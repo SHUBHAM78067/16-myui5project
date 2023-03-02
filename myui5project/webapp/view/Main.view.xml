@@ -1,0 +1,78 @@
+<minion:View xmlns:core="sap.ui.core" xmlns:minion="sap.ui.core.mvc" xmlns="sap.m" 
+             xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table"
+             controllerName="mickey.controller.Main">
+    <!-- <Input id="idInp" value="Superman" width="30%"></Input> -->
+    
+    <t:Table rows="{/empTab}" visibleRowCount="5" selectionMode="Single">
+        <t:columns>
+            <t:Column label="Emp Id">
+                <t:template>
+                    <Text text="{empId}"></Text>
+                </t:template>
+            </t:Column>
+            <t:Column>
+                <t:label>
+                    <Text text="Emp Name"></Text>
+                </t:label>
+                <t:template>
+                    <Input value="{empName}"></Input>
+                </t:template>
+            </t:Column>
+            <t:Column label="Salary">
+                <t:template>
+                    <HBox>
+                        <Text text="{salary}"></Text>
+                        <Text text="{currency}"></Text>
+                    </HBox>
+                </t:template>
+            </t:Column>
+            <t:Column label="Smoker">
+                <t:template>
+                    <CheckBox selected="{smoker}"></CheckBox>
+                </t:template>
+            </t:Column>
+            <t:Column label="Gender">
+                <t:template>
+                    <Image width="30px" height="30px" src="{gender}"></Image>
+                </t:template>
+            </t:Column>
+            <t:Column label="Rating">
+                <t:template>
+                    <RatingIndicator value="{rating}"></RatingIndicator>
+                </t:template>
+            </t:Column>
+            <t:Column>
+                <t:template>
+                    <Select selectedKey="{mStat}">
+                        <items>
+                            <core:Item key="M" text="Married"></core:Item>
+                            <core:Item key="S" text="Single"></core:Item>
+                            <core:Item key="H" text="Happily Married"></core:Item>
+                        </items>
+                    </Select>
+                </t:template>
+            </t:Column>
+        </t:columns>
+    </t:Table>
+
+    <f:SimpleForm title="My Employee Data" editable="true">
+        <!-- <f:title>
+            <core:Title></core:Title>
+        </f:title> -->
+        <f:content>
+            <Label text="Emp Id"></Label>
+            <Input id="idEmpId" width="40%" value="{/empStr/empId}" enabled="{/empStr/enabled}"></Input>
+            <Label text="Emp name"></Label>
+            <Input id="idEmpName" width="60%" value="{path : '/empStr/empName'}" enabled="{/empStr/enabled}"></Input>
+            <Label text="Salary"></Label>
+            <Input id="idSal" width="30%" enabled="{= ${/empStr/empName} === 'Ananya' ? false : true}"></Input>
+            <Label text="Currency"></Label>
+            <Input id="idCurr" width="20%" enabled="{/empStr/enabled}"></Input>
+            <Label text="Smoker"></Label>
+            <CheckBox id="idSmk" width="40%" selected="{/empStr/smoker}" enabled="{/empStr/enabled}"></CheckBox>
+        </f:content>
+    </f:SimpleForm>
+    <Switch change="onSwtChange"></Switch>
+    <Button text="Change Data" press="onChangeData"></Button>
+    <Button text="This is New Button" press="anotherFx"></Button>
+</minion:View>
